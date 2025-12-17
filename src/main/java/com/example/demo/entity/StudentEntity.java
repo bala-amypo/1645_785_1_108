@@ -15,12 +15,30 @@ public class StudentEntity{
         this.name=name;
     }
     public void setUsername(String username){
-        this.username=name;
+        this.username=username;
     }
-    public void setName(String name){
-        this.name=name;
+    public void setPassword(String password){
+        this.password=password;
     }
-    public void setName(String name){
-        this.name=name;
+    public void setCreated(Date created){
+        this.created=created;
     }
+
+    public Integer getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getUsername(){
+        return username;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public Date getCreated(){
+        return created;
+    }
+
+    
 }
