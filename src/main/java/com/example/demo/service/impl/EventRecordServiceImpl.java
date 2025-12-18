@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.service.EventRecordService;
 import com.example.demo.repository.EventRecordRepository;
-import com.example.demo.entity.StudentEntity;
+import com.example.demo.model.EventRecord;
 
 @Service
-public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService{
-    @Autowired StudentRepo student;
+public class EventRecordServiceImpl implements EventRecordService{
+    @Autowired EventRecordRepository eventR;
     @Override
-    public StudentEntity postData(StudentEntity stu){
-        return student.save(stu);
+    public EventRecord postData(EventRecord eve){
+        return eventR.save(eve);
     }
 }
