@@ -7,7 +7,7 @@ import com.example.demo.repository.StudentRepo;
 import com.example.demo.entity.StudentEntity;
 
 @Service
-public class StudentServiceImpl implements StudentService{
+public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService{
     @Autowired StudentRepo student;
     @Override
     public StudentEntity postData(StudentEntity stu){
