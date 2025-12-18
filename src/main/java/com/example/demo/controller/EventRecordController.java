@@ -1,1 +1,19 @@
 package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.demo.entity.EventRecord;
+import com.example.demo.service.EventRecordService;
+
+@RestController
+public class EventRecordController{
+    @Autowired EventRecordService ser;
+
+    @PostMapping("/post")
+    public EventRecord sendData(@RequestBody EventRecord stu){
+        return ser.postData(stu);
+    }
+}

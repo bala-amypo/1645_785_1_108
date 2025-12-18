@@ -1,5 +1,5 @@
-package com.example.demo.config;
+// package com.example.demo.config;
 
-public class SecurityConfig{
+// public class SecurityConfig{
     
-}
+// }
