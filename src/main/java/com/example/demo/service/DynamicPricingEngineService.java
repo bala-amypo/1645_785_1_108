@@ -1,8 +1,8 @@
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import com.example.demo.entity.StudentEntity;
+// import com.example.demo.entity.StudentEntity;
 
-public interface DynamicPricingEngineService{
-    StudentEntity postData(StudentEntity student);
+// public interface DynamicPricingEngineService{
+//     StudentEntity postData(StudentEntity student);
 
-}
+// }
