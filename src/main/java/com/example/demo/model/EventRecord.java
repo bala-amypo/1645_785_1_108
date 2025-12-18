@@ -12,18 +12,21 @@ public class StudentEntity{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String eventCode;
-    private String username;
-    private String password;
-    private Date created;
+    private String eventName;
+    private String venue;
+    private Date eventDate;
+    private double basePrice;
+    private Date createdAt;
+    private Boolean active;
 
     public void setId(Integer id){
         this.id=id;
     }
-    public void setName(String name){
-        this.name=name;
+    public void setEventCode(String eventCode){
+        this.eventCode=eventCode;
     }
-    public void setUsername(String username){
-        this.username=username;
+    public void setEventName(String eventName){
+        this.eventName=eventName;
     }
     public void setPassword(String password){
         this.password=password;
