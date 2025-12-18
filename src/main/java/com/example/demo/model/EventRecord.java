@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class StudentEntity{
+public class EventRecord{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -65,9 +65,13 @@ public class StudentEntity{
     public Date getCreatedAt(){
         return createdAt;
     }
+    public Boolean getActive(){
+        return active;
+    }
 
-    public StudentEntity(){};
-    public StudentEntity(Integer id, String name, String username, String password, Date created){
+    public EventRecord(){};
+    public EventRecord(Long id, String eventCode, String eventName,String venue,Date eventDate,double basePrice;,Date createdAt;
+    private Boolean active){
         this.id=id;
         this.name=name;
         this.username=username;
