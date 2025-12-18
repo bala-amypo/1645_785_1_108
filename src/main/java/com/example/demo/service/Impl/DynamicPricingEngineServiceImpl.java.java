@@ -14,10 +14,10 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineServ
     //     return student.save(stu);
     // }
 
-    @Autowired EventRecordRepository event;
-    @Override
-    public String existsByEventCode(String code){
-        return 
-    }
+    // @Autowired EventRecordRepository event;
+    // @Override
+    // public String existsByEventCode(String eventCode){
+    //     return 
+    // }
 
 }
