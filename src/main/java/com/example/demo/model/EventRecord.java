@@ -38,16 +38,19 @@ public class StudentEntity{
         this.basePrice=basePrice;
     }
     public void setCreatedAt(Date createdAt){
-        this.created=created;
+        this.createdAt=createdAt;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
     }
 
-    public Integer getId(){
+    public Long getId(){
         return id;
     }
-    public String getName(){
-        return name;
+    public String getEventCode(){
+        return eventCode;
     }
-    public String getUsername(){
+    public String getEvent(){
         return username;
     }
     public String getPassword(){
