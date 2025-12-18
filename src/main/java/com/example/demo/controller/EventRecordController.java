@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.example.demo.entity.EventRecord;
+import com.example.demo.model.EventRecord;
 import com.example.demo.service.EventRecordService;
 
 @RestController
