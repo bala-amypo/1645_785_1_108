@@ -50,14 +50,20 @@ public class StudentEntity{
     public String getEventCode(){
         return eventCode;
     }
-    public String getEvent(){
-        return username;
+    public String getEventName(){
+        return eventName;
     }
-    public String getPassword(){
-        return password;
+    public String getVenue(){
+        return venue;
     }
-    public Date getCreated(){
-        return created;
+    public Date getEventDate(){
+        return eventDate;
+    }
+    public Double getBasePrice(){
+        return basePrice;
+    }
+    public Date getCreatedAt(){
+        return createdAt;
     }
 
     public StudentEntity(){};
