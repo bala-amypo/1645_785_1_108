@@ -10,7 +10,7 @@ import java.util.Date;
 public class StudentEntity{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String eventCode;
     private String eventName;
     private String venue;
