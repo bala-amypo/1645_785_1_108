@@ -2,9 +2,9 @@ package com.example.demo.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.model.DynamicPricingRecord;
+import com.example.demo.model.PriceAdjustmentLog;
 
 @Repository
-public interface DynamicPricingRecordRepository extends JpaRepository<DynamicPricingRecord,Integer>{
+public interface PriceAdjustmentLogRepository extends JpaRepository<PriceAdjustmentLog,Integer>{
 
 }

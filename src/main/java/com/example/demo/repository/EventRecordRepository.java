@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.EventRecord;
 
 @Repository
-public interface EventRecordRecordRepository extends JpaRepository<EventRecord,Integer>{
+public interface EventRecordRepository extends JpaRepository<EventRecord,Integer>{
 
 }
