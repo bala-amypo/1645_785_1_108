@@ -8,10 +8,16 @@ import com.example.demo.entity.StudentEntity;
 
 @Service
 public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService{
-    @Autowired StudentRepo student;
+    // @Autowired StudentRepo student;
+    // @Override
+    // public StudentEntity postData(StudentEntity stu){
+    //     return student.save(stu);
+    // }
+
+    @Autowired EventRecordRepository event;
     @Override
-    public StudentEntity postData(StudentEntity stu){
-        return student.save(stu);
+    public String existsByEventCode(String code){
+        return 
     }
 
 }
