@@ -19,7 +19,7 @@ public class StudentEntity{
     private Date createdAt;
     private Boolean active;
 
-    public void setId(Integer id){
+    public void setId(Long id){
         this.id=id;
     }
     public void setEventCode(String eventCode){
@@ -28,10 +28,16 @@ public class StudentEntity{
     public void setEventName(String eventName){
         this.eventName=eventName;
     }
-    public void setPassword(String password){
-        this.password=password;
+    public void setVenue(String venue){
+        this.venue=venue;
     }
-    public void setCreated(Date created){
+    public void setEventDate(Date eventDate){
+        this.eventDate=eventDate;
+    }
+    public void setBasePrice(double basePrice){
+        this.basePrice=basePrice;
+    }
+    public void setCreatedAt(Date createdAt){
         this.created=created;
     }
 
