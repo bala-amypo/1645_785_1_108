@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.model.EventRecord;
@@ -16,5 +17,8 @@ public class EventRecordController{
     public EventRecord sendData(@RequestBody EventRecord stu){
         return ser.postData(stu);
     }
-    @PostMApping
+    @GetMapping("/get")
+    public List<EventRecord> getData(){
+        return ser.getAllData(stu);
+    }
 }
