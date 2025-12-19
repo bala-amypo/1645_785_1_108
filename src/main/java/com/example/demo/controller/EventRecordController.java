@@ -16,4 +16,5 @@ public class EventRecordController{
     public EventRecord sendData(@RequestBody EventRecord stu){
         return ser.postData(stu);
     }
+    @PostMApping
 }
