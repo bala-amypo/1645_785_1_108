@@ -19,6 +19,6 @@ public class EventRecordController{
     }
     @GetMapping("/get")
     public List<EventRecord> getData(){
-        return ser.getAllData(stu);
+        return ser.getAllData();
     }
 }
