@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
+
 @Entity
 public class EventRecord{
     @Id
