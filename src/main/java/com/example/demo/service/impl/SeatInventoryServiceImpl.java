@@ -49,7 +49,7 @@ public class SeatInventoryServiceImpl implements SeatInventoryService{
     public SeatInventoryRecord getInventoryByEvent(Long eventId) {
         SeatInventoryRecord inventory = inventoryRepository.findByEventId(eventId);
         if (inventory == null) {
-            throw new BadRequestException("InventoryId not found");
+            throw new BadRequestException("Inventory not found");
         }
         return inventory;
     }
