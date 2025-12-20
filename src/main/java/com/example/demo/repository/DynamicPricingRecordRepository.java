@@ -1,10 +1,16 @@
-// package com.example.demo.repository;
+package com.example.demo.repository;
 
-// import org.springframework.stereotype.Repository;
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import com.example.demo.model.DynamicPricingRecord;
+import com.example.demo.model.DynamicPriceRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// @Repository
-// public interface DynamicPricingRecordRepository extends JpaRepository<DynamicPricingRecord,Integer>{
+import java.util.List;
+import java.util.Optional;
 
-// }
+@Repository
+public interface DynamicPriceRecordRepository extends JpaRepository<DynamicPriceRecord, Long> {
+
+    List<DynamicPriceRecord> findByEventIdOrderByComputedAtDesc(Long eventId);
+
+    Optional<DynamicPriceRecord> findFirstByEventIdOrderByComputedAtDesc(Long eventId);
+}
