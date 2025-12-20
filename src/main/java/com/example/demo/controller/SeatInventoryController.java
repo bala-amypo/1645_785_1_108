@@ -7,31 +7,24 @@ import com.example.demo.service.SeatInventoryService;
 
 @RestController
 public class SeatInventoryController {
-
-    private final SeatInventoryService service;
-
-    public SeatInventoryController(SeatInventoryService service) {
+    private SeatInventoryService service;
+    public SeatInventoryController(SeatInventoryService service){
         this.service = service;
     }
-
     @PostMapping("/inventory/")
-    public SeatInventoryRecord createInventory(@RequestBody SeatInventoryRecord inventory) {
+    public SeatInventoryRecord createInventory(@RequestBody SeatInventoryRecord inventory){
         return service.createInventory(inventory);
     }
-
     @PutMapping("/inventory/{eventId}/remaining")
-    public SeatInventoryRecord updateRemainingSeats(@PathVariable Long eventId,
-                                                    @RequestParam Integer remainingSeats) {
+    public SeatInventoryRecord updateRemainingSeats(@PathVariable Long eventId,@RequestParam Integer remainingSeats){
         return service.updateRemainingSeats(eventId, remainingSeats);
     }
-
     @GetMapping("/inventory/event/{eventId}")
-    public SeatInventoryRecord getInventoryByEvent(@PathVariable Long eventId) {
+    public SeatInventoryRecord getInventoryByEvent(@PathVariable Long eventId){
         return service.getInventoryByEvent(eventId);
     }
-
     @GetMapping("/inventory/")
-    public List<SeatInventoryRecord> getAllInventories() {
+    public List<SeatInventoryRecord> getAllInventories(){
         return service.getAllInventories();
     }
 }
