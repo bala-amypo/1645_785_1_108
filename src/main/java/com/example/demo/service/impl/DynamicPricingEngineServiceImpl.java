@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService {
 
-    private final DynamicPriceRecordRepository priceRepository;
+    private final DynamicPricingRecordRepository priceRepository;
 
     public DynamicPricingEngineServiceImpl(DynamicPricingRecordRepository priceRepository) {
         this.priceRepository = priceRepository;
