@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SeatInventoryServiceImpl implements SeatInventoryService{
+public class SeatInventoryServiceImpl implements SeatInventoryService {
+
     private SeatInventoryRecordRepository inventoryRepository;
     private EventRecordRepository eventRepository;
 
-    public SeatInventoryServiceImpl(SeatInventoryRecordRepository inventoryRepository,EventRecordRepository eventRepository){
+    public SeatInventoryServiceImpl(SeatInventoryRecordRepository inventoryRepository,
+EventRecordRepository eventRepository) {
         this.inventoryRepository = inventoryRepository;
         this.eventRepository = eventRepository;
     }
