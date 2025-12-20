@@ -1,23 +1,44 @@
-// package com.example.demo.service.impl;
+package com.example.demo.service.impl;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Service;
-// import com.example.demo.service.StudentService;
-// import com.example.demo.repository.StudentRepo;
-// import com.example.demo.entity.StudentEntity;
+import com.example.demo.model.DynamicPriceRecord;
+import com.example.demo.repository.DynamicPriceRecordRepository;
+import com.example.demo.service.DynamicPricingEngineService;
+import com.example.demo.exception.BadRequestException;
+import org.springframework.stereotype.Service;
 
-// @Service
-// public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService{
-//     @Autowired StudentRepo student;
-//     @Override
-//     public StudentEntity postData(StudentEntity stu){
-//         return student.save(stu);
-//     }
+import java.util.List;
 
-//     // @Autowired EventRecordRepository event;
-//     // @Override
-//     // public String existsByEventCode(String eventCode){
-//     //     return 
-//     // }
+@Service
+public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService {
 
-// }
+    private final DynamicPriceRecordRepository priceRepository;
+
+    public DynamicPricingEngineServiceImpl(DynamicPriceRecordRepository priceRepository) {
+        this.priceRepository = priceRepository;
+    }
+
+    @Override
+    public DynamicPriceRecord savePrice(DynamicPriceRecord record) {
+        if (record.getComputedPrice() != null && record.getComputedPrice() <= 0) {
+            throw new BadRequestException("Computed price must be > 0");
+        }
+        return priceRepository.save(record);
+    }
+
+    @Override
+    public List<DynamicPriceRecord> getPriceHistory(Long eventId) {
+        return priceRepository.findByEventIdOrderByComputedAtDesc(eventId);
+    }
+
+    @Override
+    public DynamicPriceRecord getLatestPrice(Long eventId) {
+        return priceRepository.findFirstByEventIdOrderByComputedAtDesc(eventId)
+                .orElseThrow(() -> new BadRequestException("Event Id not found"));
+
+    }
+
+    @Override
+    public List<DynamicPriceRecord> getAllComputedPrices() {
+        return priceRepository.findAll();
+    }
+}
