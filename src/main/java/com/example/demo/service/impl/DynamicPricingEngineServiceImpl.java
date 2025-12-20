@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.DynamicPriceRecord;
-import com.example.demo.repository.DynamicPriceRecordRepository;
+import com.example.demo.repository.DynamicPricingRecordRepository;
 import com.example.demo.service.DynamicPricingEngineService;
 import com.example.demo.exception.BadRequestException;
 import org.springframework.stereotype.Service;
