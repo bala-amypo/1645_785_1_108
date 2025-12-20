@@ -13,7 +13,7 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineServ
 
     private final DynamicPriceRecordRepository priceRepository;
 
-    public DynamicPricingEngineServiceImpl(DynamicPriceRecordRepository priceRepository) {
+    public DynamicPricingEngineServiceImpl(DynamicPricingRecordRepository priceRepository) {
         this.priceRepository = priceRepository;
     }
 
