@@ -17,10 +17,15 @@ public class EventRecord{
     private String venue;
     private LocalDate eventDate;
     private double basePrice;
-    @PrePersist
     private LocalDateTime createdAt;
     private Boolean active=true;
 
+    
+    @PrePersist
+    public void OnCreate(){
+        LocalDateTime now= LocalDateTime.now();
+        this.createdAt=now;
+    }
     public void setId(Long id){
         this.id=id;
     }
