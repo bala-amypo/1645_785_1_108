@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class EventRecord{
@@ -16,8 +17,9 @@ public class EventRecord{
     private String venue;
     private LocalDate eventDate;
     private double basePrice;
+    @PrePersist
     private LocalDateTime createdAt;
-    private Boolean active;
+    private Boolean active=true;
 
     public void setId(Long id){
         this.id=id;
@@ -62,7 +64,7 @@ public class EventRecord{
     public Double getBasePrice(){
         return basePrice;
     }
-    public LocalDate getCreatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
     public Boolean getActive(){
@@ -70,7 +72,7 @@ public class EventRecord{
     }
 
     public EventRecord(){};
-    public EventRecord(Long id, String eventCode, String eventName,String venue,Date eventDate,double basePrice,Date createdAt,Boolean active){
+    public EventRecord(Long id, String eventCode, String eventName,String venue,LocalDate eventDate,double basePrice,LocalDateTime createdAt,Boolean active){
         this.id=id;
         this.eventCode=eventCode;
         this.eventName=eventName;
