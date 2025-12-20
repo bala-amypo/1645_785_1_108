@@ -9,7 +9,7 @@ import com.example.demo.service.DynamicPricingEngineService;
 @RestController
 public class DynamicPricingController {
 
-    private final DynamicPricingEngineService service;
+    private DynamicPricingEngineService service;
 
     public DynamicPricingController(DynamicPricingEngineService service) {
         this.service = service;

@@ -7,7 +7,7 @@ import com.example.demo.service.EventRecordService;
 
 @RestController
 public class EventRecordController {
-    private final EventRecordService service;
+    private EventRecordService service;
     public EventRecordController(EventRecordService service) {
         this.service = service;
     }
