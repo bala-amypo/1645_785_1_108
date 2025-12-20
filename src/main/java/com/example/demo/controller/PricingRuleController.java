@@ -7,10 +7,9 @@ import com.example.demo.model.PricingRule;
 import com.example.demo.service.PricingRuleService;
 
 @RestController
-@RequestMapping("/api/pricing-rules")
 public class PricingRuleController {
 
-    private final PricingRuleService service;
+    private PricingRuleService service;
 
     public PricingRuleController(PricingRuleService service) {
         this.service = service;

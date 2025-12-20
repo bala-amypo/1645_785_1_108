@@ -7,7 +7,6 @@ import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService service;
@@ -16,22 +15,22 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("/users/")
     public User createUser(@RequestBody User user) {
         return service.save(user);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Long id) {
         return service.getUserById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping("/users/")
     public List<User> getAllUsers() {
         return service.getAllUsers();
     }
 
-    @GetMapping("/email/{email}")
+    @GetMapping("/users/email/{email}")
     public User getUserByEmail(@PathVariable String email) {
         return service.findByEmail(email);
     }

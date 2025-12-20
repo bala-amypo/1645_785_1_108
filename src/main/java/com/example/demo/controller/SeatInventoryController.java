@@ -6,7 +6,6 @@ import com.example.demo.model.SeatInventoryRecord;
 import com.example.demo.service.SeatInventoryService;
 
 @RestController
-@RequestMapping("/api/inventory")
 public class SeatInventoryController {
 
     private final SeatInventoryService service;
@@ -15,23 +14,23 @@ public class SeatInventoryController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("/inventory/")
     public SeatInventoryRecord createInventory(@RequestBody SeatInventoryRecord inventory) {
         return service.createInventory(inventory);
     }
 
-    @PutMapping("/{eventId}/remaining")
+    @PutMapping("/inventory/{eventId}/remaining")
     public SeatInventoryRecord updateRemainingSeats(@PathVariable Long eventId,
                                                     @RequestParam Integer remainingSeats) {
         return service.updateRemainingSeats(eventId, remainingSeats);
     }
 
-    @GetMapping("/event/{eventId}")
+    @GetMapping("/inventory/event/{eventId}")
     public SeatInventoryRecord getInventoryByEvent(@PathVariable Long eventId) {
         return service.getInventoryByEvent(eventId);
     }
 
-    @GetMapping("/")
+    @GetMapping("/inventory/")
     public List<SeatInventoryRecord> getAllInventories() {
         return service.getAllInventories();
     }

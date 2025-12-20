@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "seat_inventory_records")
 public class SeatInventoryRecord {
 
     @Id
