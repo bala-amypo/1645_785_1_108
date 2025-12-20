@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class EventRecordServiceImpl implements EventRecordService {
 
-    private final EventRecordRepository eventRecordRepository;
+    private EventRecordRepository eventRecordRepository;
 
     public EventRecordServiceImpl(EventRecordRepository eventRecordRepository) {
         this.eventRecordRepository = eventRecordRepository;
