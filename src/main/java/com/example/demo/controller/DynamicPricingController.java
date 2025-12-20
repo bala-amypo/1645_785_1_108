@@ -7,7 +7,6 @@ import com.example.demo.model.DynamicPriceRecord;
 import com.example.demo.service.DynamicPricingEngineService;
 
 @RestController
-@RequestMapping("/api/dynamic-pricing")
 public class DynamicPricingController {
 
     private final DynamicPricingEngineService service;
