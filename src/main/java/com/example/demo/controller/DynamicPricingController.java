@@ -15,7 +15,7 @@ public class DynamicPricingController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("/compute/{eventId}")
     public DynamicPriceRecord savePrice(@RequestBody DynamicPriceRecord record) {
         return service.savePrice(record);
     }
