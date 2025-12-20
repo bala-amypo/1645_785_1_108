@@ -19,7 +19,7 @@ public class DynamicPriceRecord {
     private Long id;
 
     private Long eventId;
-    private Double computedPrice;
+    private double computedPrice;
     private String appliedRuleCodes;
     private LocalDateTime computedAt;
 
