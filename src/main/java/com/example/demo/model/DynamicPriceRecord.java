@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "dynamic_price_records")
 public class DynamicPriceRecord {
 
     @Id
