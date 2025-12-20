@@ -11,27 +11,27 @@ public class EventRecordController {
     public EventRecordController(EventRecordService service) {
         this.service = service;
     }
-    @PostMapping("/")
+    @PostMapping("/events/")
     public EventRecord createEvent(@RequestBody EventRecord event) {
         return service.createEvent(event);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/events/{id}")
     public EventRecord getEventById(@PathVariable Long id) {
         return service.getEventById(id);
     }
 
-    @GetMapping("/lookup/{eventCode}")
+    @GetMapping("/events/lookup/{eventCode}")
     public EventRecord getEventByCode(@PathVariable String eventCode) {
         return service.getEventByCode(eventCode);
     }
 
-    @GetMapping("/")
+    @GetMapping("/events/")
     public List<EventRecord> getAllEvents() {
         return service.getAllEvents();
     }
 
-    @PutMapping("/{id}/status")
+    @PutMapping("/events/{id}/status")
     public EventRecord updateEventStatus(@PathVariable Long id, @RequestParam boolean active) {
         return service.updateEventStatus(id, active);
     }

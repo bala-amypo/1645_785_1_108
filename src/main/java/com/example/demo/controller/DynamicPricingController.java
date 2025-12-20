@@ -15,22 +15,22 @@ public class DynamicPricingController {
         this.service = service;
     }
 
-    @PostMapping("/compute/{eventId}")
+    @PostMapping("/dynamic-pricing/compute/{eventId}")
     public DynamicPriceRecord savePrice(@RequestBody DynamicPriceRecord record) {
         return service.savePrice(record);
     }
 
-    @GetMapping("/latest/{eventId}")
+    @GetMapping("/dynamic-pricing/latest/{eventId}")
     public DynamicPriceRecord getLatestPrice(@PathVariable Long eventId) {
         return service.getLatestPrice(eventId);
     }
 
-    @GetMapping("/history/{eventId}")
+    @GetMapping("/dynamic-pricing/history/{eventId}")
     public List<DynamicPriceRecord> getPriceHistory(@PathVariable Long eventId) {
         return service.getPriceHistory(eventId);
     }
 
-    @GetMapping("/")
+    @GetMapping("/dynamic-pricing/")
     public List<DynamicPriceRecord> getAllPrices() {
         return service.getAllComputedPrices();
     }
