@@ -15,22 +15,22 @@ public class PricingRuleController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("/pricing-rules/")
     public PricingRule createRule(@RequestBody PricingRule rule) {
         return service.createRule(rule);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/pricing-rules/{id}")
     public PricingRule updateRule(@PathVariable Long id,@RequestBody PricingRule rule) {
         return service.updateRule(id, rule);
     }
 
-    @GetMapping("/active")
+    @GetMapping("/pricing-rules/active")
     public List<PricingRule> getActiveRules() {
         return service.getActiveRules();
     }
 
-    @GetMapping("/")
+    @GetMapping("/pricing-rules/")
     public List<PricingRule> getAllRules() {
         return service.getAllRules();
     }
