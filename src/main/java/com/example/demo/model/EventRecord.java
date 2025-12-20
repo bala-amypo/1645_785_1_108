@@ -14,9 +14,9 @@ public class EventRecord{
     private String eventCode;
     private String eventName;
     private String venue;
-    private Date eventDate;
+    private LocalDate eventDate;
     private double basePrice;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private Boolean active;
 
     public void setId(Long id){
@@ -31,13 +31,13 @@ public class EventRecord{
     public void setVenue(String venue){
         this.venue=venue;
     }
-    public void setEventDate(Date eventDate){
+    public void setEventDate(LocalDate eventDate){
         this.eventDate=eventDate;
     }
     public void setBasePrice(double basePrice){
         this.basePrice=basePrice;
     }
-    public void setCreatedAt(Date createdAt){
+    public void setCreatedAt(LocalDateTime createdAt){
         this.createdAt=createdAt;
     }
     public void setActive(Boolean active){
@@ -56,13 +56,13 @@ public class EventRecord{
     public String getVenue(){
         return venue;
     }
-    public Date getEventDate(){
+    public LocalDate getEventDate(){
         return eventDate;
     }
     public Double getBasePrice(){
         return basePrice;
     }
-    public Date getCreatedAt(){
+    public LocalDate getCreatedAt(){
         return createdAt;
     }
     public Boolean getActive(){
