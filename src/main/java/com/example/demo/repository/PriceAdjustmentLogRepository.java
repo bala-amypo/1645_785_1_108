@@ -1,10 +1,14 @@
-// package com.example.demo.repository;
 
-// import org.springframework.stereotype.Repository;
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import com.example.demo.model.PriceAdjustmentLog;
+package com.example.demo.repository;
 
-// @Repository
-// public interface PriceAdjustmentLogRepository extends JpaRepository<PriceAdjustmentLog,Integer>{
+import com.example.demo.model.PriceAdjustmentLog;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// }
+import java.util.List;
+
+@Repository
+public interface PriceAdjustmentLogRepository extends JpaRepository<PriceAdjustmentLog, Long> {
+
+    List<PriceAdjustmentLog> findByEventId(Long eventId);
+}
