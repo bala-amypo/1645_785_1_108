@@ -32,7 +32,7 @@ public class EventRecordController {
     }
 
     @PutMapping("/{id}/status")
-    public EventRecord updateEventStatus(@PathVariable Long id, @RequestParameter boolean active) {
+    public EventRecord updateEventStatus(@PathVariable Long id, @RequestParam boolean active) {
         return service.updateEventStatus(id, active);
     }
 }
