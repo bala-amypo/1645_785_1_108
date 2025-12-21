@@ -20,7 +20,7 @@ public class PricingRule {
     private Integer minRemainingSeats;
     private Integer maxRemainingSeats;
     private Integer daysBeforeEvent;
-    @Posit
+    @Positive
     private Double priceMultiplier;
     private Boolean active= true;
 }

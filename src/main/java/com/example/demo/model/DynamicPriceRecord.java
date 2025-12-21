@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class DynamicPriceRecord {
     private Long id;
 
     private Long eventId;
+    @Positive
     private double computedPrice;
     private String appliedRuleCodes;
     private LocalDateTime computedAt;
