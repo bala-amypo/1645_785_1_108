@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
-
+import jakarta.validation.
 @Entity
 public class EventRecord{
     @Id
@@ -17,7 +17,7 @@ public class EventRecord{
     private String eventName;
     private String venue;
     private LocalDate eventDate;
-    @Min(1)
+    @Positive
     private double basePrice;
     private LocalDateTime createdAt;
     private Boolean active=true;
