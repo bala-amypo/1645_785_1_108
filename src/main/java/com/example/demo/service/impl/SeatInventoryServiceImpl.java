@@ -28,8 +28,7 @@ public class SeatInventoryServiceImpl implements SeatInventoryService{
         if (!eventRepository.existsById(eventId)) {
             throw new BadRequestException("Event not found");
         }
-        if (inventory.getRemainingSeats() != null && inventory.getTotalSeats() != null &&
-                inventory.getRemainingSeats() > inventory.getTotalSeats()) {
+        if (inventory.getRemainingSeats() != null && inventory.getTotalSeats() != null && inventory.getRemainingSeats() > inventory.getTotalSeats()) {
             throw new BadRequestException("Remaining seats cannot exceed total seats");
         }
         return inventoryRepository.save(inventory);
