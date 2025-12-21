@@ -4,13 +4,11 @@ public class JwtTokenProvider{
 
     public JwtTokenProvider(String secret,Long validityInMs, boolean someFlag){};
 
-    String generateToken(Long userId, String email, String role){
+    public String generateToken(Long userId, String email, String role){
         return null;
     }
-    boolean validateToken(String token){
+    public boolean validateToken(String token){
         return false;
     }
-    Claims getClaimsFromToken(String token){
-        return null;
-    }
+    public Claims getClaimsFromToken(String token);
 }
