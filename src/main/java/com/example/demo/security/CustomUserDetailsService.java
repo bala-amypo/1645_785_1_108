@@ -5,5 +5,6 @@ import com.example.demo.model.User;
 public class CustomUserDetailsService implements UserService{
     private UserRepository userRepository;
 
-    User 
+    public User loadUserByUsername(String email);
+    public Map<String,User> registerUser(String fullName, String email, String password, String role);
 }
