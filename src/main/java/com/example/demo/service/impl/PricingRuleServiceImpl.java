@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PricingRuleServiceImpl implements PricingRuleService {
 
-    private final PricingRuleRepository ruleRepository;
+    private PricingRuleRepository ruleRepository;
 
     public PricingRuleServiceImpl(PricingRuleRepository ruleRepository) {
         this.ruleRepository = ruleRepository;

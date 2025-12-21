@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class PriceAdjustmentLogServiceImpl implements PriceAdjustmentLogService {
 
-    private final PriceAdjustmentLogRepository logRepository;
+    private PriceAdjustmentLogRepository logRepository;
 
     public PriceAdjustmentLogServiceImpl(PriceAdjustmentLogRepository logRepository) {
         this.logRepository = logRepository;
