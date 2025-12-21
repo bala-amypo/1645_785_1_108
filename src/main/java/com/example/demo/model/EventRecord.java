@@ -17,6 +17,7 @@ public class EventRecord{
     private String eventName;
     private String venue;
     private LocalDate eventDate;
+    @Min(1)
     private double basePrice;
     private LocalDateTime createdAt;
     private Boolean active=true;
