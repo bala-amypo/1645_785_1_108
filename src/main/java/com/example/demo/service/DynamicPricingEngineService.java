@@ -1,5 +1,5 @@
 package com.example.demo.service;
-
+import com.example.demo.model.
 import com.example.demo.model.DynamicPriceRecord;
 import java.util.List;
 

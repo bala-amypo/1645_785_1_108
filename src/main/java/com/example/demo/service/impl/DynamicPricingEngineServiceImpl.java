@@ -5,7 +5,7 @@ import com.example.demo.repository.DynamicPricingRecordRepository;
 import com.example.demo.service.DynamicPricingEngineService;
 import com.example.demo.exception.BadRequestException;
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.PricingRule;
+import com.example.demo.model.PricingRule;
 import java.util.List;
 
 @Service
