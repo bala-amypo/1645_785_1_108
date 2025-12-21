@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
+import jakarta.validation.constraints.Positive;
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,6 +20,7 @@ public class PricingRule {
     private Integer minRemainingSeats;
     private Integer maxRemainingSeats;
     private Integer daysBeforeEvent;
+    @Posit
     private Double priceMultiplier;
     private Boolean active= true;
 }
