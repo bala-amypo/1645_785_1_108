@@ -1,5 +1,5 @@
 package com.example.demo.security;
-
+import io.jsonwebtoken.Claims;
 public class JwtTokenProvider{
 
     public JwtTokenProvider(String secret,Long validityInMs, boolean someFlag){};
@@ -7,5 +7,10 @@ public class JwtTokenProvider{
     String generateToken(Long userId, String email, String role){
         return null;
     }
-    boolean validateToken
+    boolean validateToken(String token){
+        return false;
+    }
+    Claims getClaimsFromToken(String token){
+        return null;
+    }
 }
