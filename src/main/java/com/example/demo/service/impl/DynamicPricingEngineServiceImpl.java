@@ -16,7 +16,18 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineServ
     public DynamicPricingEngineServiceImpl(DynamicPricingRecordRepository priceRepository) {
         this.priceRepository = priceRepository;
     }
-
+@Override
+public Double calculatePriceWithRules(Double basePrice, int remainingSeats, int daysBeforeEvent, List<PricingRule> rules) {
+    for (PricingRule rule : rules) {
+        if (rule.getActive()
+            && remainingSeats >= rule.getMinRemainingSeats()
+            && remainingSeats <= rule.getMaxRemainingSeats()
+            && daysBeforeEvent <= rule.getDaysBeforeEvent()) {
+            return basePrice * rule.getPriceMultiplier();
+        }
+    }
+    return basePrice; 
+}
     @Override
     public DynamicPriceRecord savePrice(DynamicPriceRecord record) {
         if ( record.getComputedPrice() <= 0) {

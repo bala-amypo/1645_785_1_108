@@ -8,4 +8,5 @@ public interface DynamicPricingEngineService {
     List<DynamicPriceRecord> getPriceHistory(Long eventId);
     DynamicPriceRecord getLatestPrice(Long eventId);
     List<DynamicPriceRecord> getAllComputedPrices();
+    Double calculatePriceWithRules(Double basePrice, int remainingSeats, int daysBeforeEvent, List<PricingRule> rules);
 }
