@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
+import jakarta.validation.constraints.NotBlank;
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,5 +20,6 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    @NotBlank
     private String role;
 }

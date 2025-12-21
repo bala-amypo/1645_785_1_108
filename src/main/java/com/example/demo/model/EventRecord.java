@@ -7,12 +7,14 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Positive;
 @Entity
 public class EventRecord{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @Column(unique=true)
     private String eventCode;
     private String eventName;
     private String venue;
