@@ -18,6 +18,7 @@ public class User {
     private String fullName;
 
     @Column(unique = true)
+    @Email
     private String email;
     private String password;
     @NotBlank
