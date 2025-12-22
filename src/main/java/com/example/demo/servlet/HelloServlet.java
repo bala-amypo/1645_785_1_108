@@ -13,7 +13,7 @@ public class HelloServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setStatus(200);
         res.setContentType("text/plain");
-           res.getWriter().write("Hello from Dynamic Event Ticket Pricing Servlet");
+        res.getWriter().write("Hello from Dynamic Event Ticket Pricing Servlet");
      
     }
 }
