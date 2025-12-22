@@ -31,7 +31,7 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineServ
     @Override
     public DynamicPriceRecord savePrice(DynamicPriceRecord record) {
         if ( record.getComputedPrice() <= 0) {
-            throw new BadRequestException("Computed price must be > 0");
+            throw new BadRequestException("Base price must be > 0");
         }
         return priceRepository.save(record);
     }

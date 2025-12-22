@@ -20,7 +20,7 @@ public class PricingRuleServiceImpl implements PricingRuleService {
     @Override
     public PricingRule createRule(PricingRule rule) {
         if (ruleRepository.existsByRuleCode(rule.getRuleCode())) {
-            throw new BadRequestException("Rule code already exists");
+            throw new BadRequestException("Event code already exists");
         }
         if (rule.getPriceMultiplier() != null && rule.getPriceMultiplier() <= 0) {
             throw new BadRequestException("Price multiplier must be > 0");
