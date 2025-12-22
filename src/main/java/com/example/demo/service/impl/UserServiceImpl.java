@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existsByEmail(String email){
         if(email==null) throw new BadRequestException("Email cannot be null");
-        return userRepository.existByEmail(email);
+        return userRepository.existById(email);
     }
 }
 
