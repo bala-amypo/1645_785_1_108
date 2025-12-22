@@ -45,10 +45,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException("User not found"));
     }
-    @Override
-    public boolean existsByEmail(String email){
-        if(email==null) throw new BadRequestException("Email cannot be null");
-        return userRepository.existByEmail(email);
-    }
+    // @Override
+    // public boolean existsByEmail(String email){
+    //     if(email==null) throw new BadRequestException("Email cannot be null");
+    //     return userRepository.existByEmail(email);
+    // }
 }
 
