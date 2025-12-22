@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -19,6 +21,7 @@ public class User {
 
     @Column(unique = true)
     private String email;
+    @Size(min=8)
     private String password;
     @NotBlank
     private String role;
