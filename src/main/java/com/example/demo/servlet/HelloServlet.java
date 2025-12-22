@@ -14,7 +14,8 @@ public class sampleget extends HttpServlet{
         res.setStatus(200);
         res.setContentType("text/plain");
         for(user u:samplepost.users){
-           res.getWriter().write(u.name+" "+u.email+" "+u.pwd+" "+u.phone+" "+u.age);
+           res.getWriter().write("Hello from Dynamic Event Ticket Pricing Servlet");
         }
      
     }
+}

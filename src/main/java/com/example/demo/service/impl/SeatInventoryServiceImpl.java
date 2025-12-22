@@ -38,7 +38,7 @@ public class SeatInventoryServiceImpl implements SeatInventoryService{
     public SeatInventoryRecord updateRemainingSeats(Long eventId, Integer remainingSeats) {
         SeatInventoryRecord inventory = inventoryRepository.findByEventId(eventId);
         if (inventory == null) {
-            throw new BadRequestException("Inventory not found");
+            throw new BadRequestException("Seat inventory not found");
         }
         inventory.setRemainingSeats(remainingSeats);
         return inventoryRepository.save(inventory);
