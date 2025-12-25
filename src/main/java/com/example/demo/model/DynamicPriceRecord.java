@@ -59,8 +59,9 @@ public class DynamicPriceRecord {
 
     private LocalDateTime calculatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id", nullable = false)
-    @JsonBackReference
-    private EventRecord event;
+@ManyToOne
+@JoinColumn(name = "event_id", nullable = false)
+@JsonBackReference
+private EventRecord event;
+
 }
