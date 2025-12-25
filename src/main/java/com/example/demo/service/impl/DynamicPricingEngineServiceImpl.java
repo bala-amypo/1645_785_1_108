@@ -38,7 +38,7 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineServ
 
     @Override
     public List<DynamicPriceRecord> getPriceHistory(Long eventId) {
-        return priceRepository.findByEventIdOrderByComputedAtDesc(eventId);
+        return priceRepository.findByEvent_IdOrderByCalculatedAtDesc(eventId);
     }
 
     @Override

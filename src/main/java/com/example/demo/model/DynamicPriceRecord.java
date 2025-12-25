@@ -56,7 +56,7 @@ public class DynamicPriceRecord {
     private Long id;
 
     private double computedPrice;
-
+    @Column(name = "calculated_at")
     private LocalDateTime calculatedAt;
 
 @ManyToOne
