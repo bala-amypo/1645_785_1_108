@@ -23,7 +23,7 @@ public class SeatInventoryController {
     public SeatInventoryRecord getInventoryByEvent(@PathVariable Long eventId){
         return service.getInventoryByEvent(eventId);
     }
-    @GetMapping("/inventory/")
+    @GetMapping("/")
     public List<SeatInventoryRecord> getAllInventories(){
         return service.getAllInventories();
     }
