@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.Positive;
 
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import com.example.demo.model.EventRecord;
+
 @Entity
 @Data
 @AllArgsConstructor

@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.JoinColumn;
+import com.example.demo.model.EventRecord;
 
 @Entity
 @Data
@@ -24,7 +27,7 @@ public class SeatInventoryRecord {
     @OneToOne
     @JoinColumn(name = "event_id")
     private EventRecord event;
-    
+
     @PrePersist
     @PreUpdate
     protected void onUpdate() {

@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import com.example.demo.model.EventRecord;
 
 @Entity
 @Data
@@ -26,7 +29,7 @@ public class PriceAdjustmentLog {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private EventRecord event;
-    
+
     @PrePersist
     protected void onCreate() {
         this.changedAt = LocalDateTime.now();

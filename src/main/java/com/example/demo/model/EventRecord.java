@@ -12,7 +12,10 @@ import jakarta.validation.constraints.Positive;
 
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
-import com.example.demo.model.EventRecord;
+import com.example.demo.model.SeatInventoryRecord;
+import com.example.demo.model.DynamicPriceRecord;
+import com.example.demo.model.PriceAdjustmentLog;
+
 @Entity
 public class EventRecord{
     @Id
