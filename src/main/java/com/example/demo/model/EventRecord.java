@@ -10,11 +10,13 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Positive;
 
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
 import com.example.demo.model.SeatInventoryRecord;
 import com.example.demo.model.DynamicPriceRecord;
 import com.example.demo.model.PriceAdjustmentLog;
+import java.util.*;
 
 @Entity
 public class EventRecord{
