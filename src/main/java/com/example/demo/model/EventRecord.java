@@ -159,7 +159,8 @@ public class EventRecord {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
+    @Column(nullable = false)
+    private boolean active = true;
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
