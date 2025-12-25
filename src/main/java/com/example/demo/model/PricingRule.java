@@ -24,4 +24,7 @@ public class PricingRule {
     @Positive
     private Double priceMultiplier;
     private Boolean active= true;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventRecord event;
 }

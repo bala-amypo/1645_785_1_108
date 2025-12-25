@@ -24,6 +24,10 @@ public class DynamicPriceRecord {
     private String appliedRuleCodes;
     private LocalDateTime computedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventRecord event;
+    
     @PrePersist
     protected void onCreate() {
         this.computedAt = LocalDateTime.now();

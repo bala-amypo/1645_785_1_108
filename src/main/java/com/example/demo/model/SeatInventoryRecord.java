@@ -21,6 +21,10 @@ public class SeatInventoryRecord {
     private Integer remainingSeats;
     private LocalDateTime updatedAt;
 
+    @OneToOne
+    @JoinColumn(name = "event_id")
+    private EventRecord event;
+    
     @PrePersist
     @PreUpdate
     protected void onUpdate() {

@@ -23,6 +23,10 @@ public class PriceAdjustmentLog {
     private String reason;
     private LocalDateTime changedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventRecord event;
+    
     @PrePersist
     protected void onCreate() {
         this.changedAt = LocalDateTime.now();
