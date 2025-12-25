@@ -24,6 +24,14 @@ public class EventRecord{
     private LocalDateTime createdAt;
     private Boolean active=true;
 
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+    private SeatInventoryRecord seatInventory;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<DynamicPriceRecord> priceRecords;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<PriceAdjustmentLog> adjustmentLogs;
     
     @PrePersist
     public void OnCreate(){
