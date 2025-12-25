@@ -21,7 +21,7 @@ public class SeatInventoryServiceImpl implements SeatInventoryService{
 
     @Override
     public SeatInventoryRecord createInventory(SeatInventoryRecord inventory) {
-        Long eventId = inventory.getEventId(); 
+        Long eventId = inventory.getEvent().getId();
         if (eventId == null) {
             throw new BadRequestException("Event ID cannot be null");
         }
