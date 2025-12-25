@@ -19,8 +19,7 @@ public class PriceAdjustmentLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long eventId;     
+    private Long id;  
     private Double oldPrice;
     private Double newPrice;
     private String reason;
