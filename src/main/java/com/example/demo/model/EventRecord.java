@@ -9,6 +9,10 @@ import java.time.LocalDateTime;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Positive;
+
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
+import com.example.demo.model.EventRecord;
 @Entity
 public class EventRecord{
     @Id

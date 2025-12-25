@@ -8,6 +8,10 @@ import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import com.example.demo.model.EventRecord;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,7 +31,7 @@ public class DynamicPriceRecord {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private EventRecord event;
-    
+
     @PrePersist
     protected void onCreate() {
         this.computedAt = LocalDateTime.now();
