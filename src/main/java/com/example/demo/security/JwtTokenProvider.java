@@ -1,14 +1,46 @@
 package com.example.demo.security;
-// import io.jsonwebtoken.Claims;
-public class JwtTokenProvider{
 
-    public JwtTokenProvider(String secret,Long validityInMs, boolean someFlag){};
+import io.jsonwebtoken.*;
+import java.util.Date;
 
-    public String generateToken(Long userId, String email, String role){
-        return null;
+public class JwtTokenProvider {
+
+    private final String secret;
+    private final long validityInMs;
+    private final boolean someFlag;
+
+    public JwtTokenProvider(String secret, long validityInMs, boolean someFlag) {
+        this.secret = secret;
+        this.validityInMs = validityInMs;
+        this.someFlag = someFlag;
     }
-    public boolean validateToken(String token){
-        return false;
+
+    public String generateToken(Long userId, String email, String role) {
+        Claims claims = Jwts.claims().setSubject(email);
+        claims.put("userId", userId);
+        claims.put("role", role);
+
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + validityInMs);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(expiry)
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
     }
-    // public Claims getClaimsFromToken(String token);
+
+    public boolean validateToken(String token) {
+        try {
+            getClaimsFromToken(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public Claims getClaimsFromToken(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    }
 }

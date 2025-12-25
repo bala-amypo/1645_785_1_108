@@ -1,15 +1,28 @@
 package com.example.demo.security;
-import com.example.demo.service.UserService;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.model.User;
-import java.util.*;
-public class CustomUserDetailsService{
-    private UserRepository userRepository;
 
-    public User loadUserByUsername(String email){
-        return null;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private final UserRepository repo;
+
+    public CustomUserDetailsService(UserRepository repo) {
+        this.repo = repo;
     }
-    public Map<String,User> registerUser(String fullName, String email, String password, String role){
-        return null;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) {
+        User user = repo.findByEmail(email);
+        if (user == null) throw new UsernameNotFoundException("User not found");
+
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getEmail())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .build();
     }
 }
