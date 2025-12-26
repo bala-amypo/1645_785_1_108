@@ -3,30 +3,31 @@ package com.example.demo.service.impl;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepo;
 import com.example.demo.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+
+import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
 
-    public UserServiceImpl(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
-
     @Override
-    public User save(User user) {
+    public User createUser(User user) {
         return userRepo.save(user);
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepo.findByEmail(email);
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return userRepo.findById(id);
+    public User updateUserStatus(Long id, boolean active) {
+        User user = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setActive(active);
+        return userRepo.save(user);
     }
 }
