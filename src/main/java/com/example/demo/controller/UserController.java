@@ -1,33 +1,37 @@
-package com.example.demo.controller;
+// package com.example.demo.controller;
 
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+// import org.springframework.web.bind.annotation.*;
+// import java.util.List;
 
-import java.util.List;
+// import com.example.demo.model.User;
+// import com.example.demo.service.UserService;
 
-@RestController
-@RequestMapping("/api/users")
-@RequiredArgsConstructor
-public class UserController {
+// @RestController
+// public class UserController {
 
-    private final UserService service;
+//     private final UserService service;
 
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return service.createUser(user);
-    }
+//     public UserController(UserService service) {
+//         this.service = service;
+//     }
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return service.getAllUsers();
-    }
+//     @PostMapping("/users/")
+//     public User createUser(@RequestBody User user) {
+//         return service.save(user);
+//     }
 
-    @PutMapping("/{id}/status")
-    public User updateUserStatus(
-            @PathVariable Long id,
-            @RequestParam boolean active) {
-        return service.updateUserStatus(id, active);
-    }
-}
+//     @GetMapping("/users/{id}")
+//     public User getUserById(@PathVariable Long id) {
+//         return service.getUserById(id);
+//     }
+
+//     @GetMapping("/users/")
+//     public List<User> getAllUsers() {
+//         return service.getAllUsers();
+//     }
+
+//     @GetMapping("/users/email/{email}")
+//     public User getUserByEmail(@PathVariable String email) {
+//         return service.findByEmail(email);
+//     }
+// }

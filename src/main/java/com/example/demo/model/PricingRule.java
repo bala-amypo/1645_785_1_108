@@ -1,32 +1,34 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Positive;
+
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import com.example.demo.model.EventRecord;
 
 @Entity
-@Table(name = "pricing_rules")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class PricingRule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true, nullable = false)
+    @Column(unique=true)
     private String ruleCode;
-
     private String description;
-
     private Integer minRemainingSeats;
     private Integer maxRemainingSeats;
-
-    // number of days before event when rule applies
     private Integer daysBeforeEvent;
-
+    @Positive
     private Double priceMultiplier;
-
-    private Boolean active;
+    private Boolean active= true;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventRecord event;
 }
