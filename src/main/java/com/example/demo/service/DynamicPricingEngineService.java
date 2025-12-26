@@ -1,12 +1,15 @@
 package com.example.demo.service;
-import com.example.demo.model.PricingRule;
-import com.example.demo.model.DynamicPriceRecord;
-import java.util.List;
 
-public interface DynamicPricingEngineService {    
-    Double calculatePriceWithRules(Double basePrice, int remainingSeats, int daysBeforeEvent, List<PricingRule> rules);
+import com.example.demo.model.DynamicPriceRecord;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface DynamicPriceService {
+
     DynamicPriceRecord savePrice(DynamicPriceRecord record);
+
+    Optional<DynamicPriceRecord> getLatestPrice(Long eventId);
+
     List<DynamicPriceRecord> getPriceHistory(Long eventId);
-    DynamicPriceRecord getLatestPrice(Long eventId);
-    List<DynamicPriceRecord> getAllComputedPrices();
 }

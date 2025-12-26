@@ -1,37 +1,26 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.DynamicPriceRecord;
+import com.example.demo.service.DynamicPriceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import com.example.demo.model.DynamicPriceRecord;
-import com.example.demo.service.DynamicPricingEngineService;
-
 @RestController
-public class DynamicPricingController {
+@RequestMapping("/api/dynamic-prices")
+@RequiredArgsConstructor
+public class DynamicPriceController {
 
-    private DynamicPricingEngineService service;
+    private final DynamicPriceService service;
 
-    public DynamicPricingController(DynamicPricingEngineService service) {
-        this.service = service;
-    }
-
-    @PostMapping("/dynamic-pricing/compute/{eventId}")
-    public DynamicPriceRecord savePrice(@RequestBody DynamicPriceRecord record) {
-        return service.savePrice(record);
-    }
-
-    @GetMapping("/dynamic-pricing/latest/{eventId}")
+    @GetMapping("/event/{eventId}/latest")
     public DynamicPriceRecord getLatestPrice(@PathVariable Long eventId) {
-        return service.getLatestPrice(eventId);
+        return service.getLatestPrice(eventId).orElseThrow();
     }
 
-    @GetMapping("/dynamic-pricing/history/{eventId}")
+    @GetMapping("/event/{eventId}")
     public List<DynamicPriceRecord> getPriceHistory(@PathVariable Long eventId) {
         return service.getPriceHistory(eventId);
-    }
-
-    @GetMapping("/dynamic-pricing/")
-    public List<DynamicPriceRecord> getAllPrices() {
-        return service.getAllComputedPrices();
     }
 }
