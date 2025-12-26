@@ -43,11 +43,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public CustomUserDetailsService() {
     }
 
-    // ***** IMPORTANT FOR TESTS *****
-    public Map<String, Object> registerUser(String name,
-                                             String email,
-                                             String password,
-                                             String role) {
+    public Map<String, Object> registerUser(String name,String email,String password,String role) {
         Map<String, Object> map = new HashMap<>();
         long id = new Random().nextLong(1000, 9999);
 

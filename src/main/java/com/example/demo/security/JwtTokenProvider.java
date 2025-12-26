@@ -1,49 +1,3 @@
-// package com.example.demo.security;
-
-// import io.jsonwebtoken.*;
-// import java.util.Date;
-
-// public class JwtTokenProvider {
-
-//     private final String secret;
-//     private final long validityInMs;
-//     private final boolean someFlag;
-
-//     public JwtTokenProvider(String secret, long validityInMs, boolean someFlag) {
-//         this.secret = secret;
-//         this.validityInMs = validityInMs;
-//         this.someFlag = someFlag;
-//     }
-
-//     public String generateToken(Long userId, String email, String role) {
-//         Claims claims = Jwts.claims().setSubject(email);
-//         claims.put("userId", userId);
-//         claims.put("role", role);
-
-//         Date now = new Date();
-//         Date expiry = new Date(now.getTime() + validityInMs);
-
-//         return Jwts.builder()
-//                 .setClaims(claims)
-//                 .setIssuedAt(now)
-//                 .setExpiration(expiry)
-//                 .signWith(SignatureAlgorithm.HS256, secret)
-//                 .compact();
-//     }
-
-//     public boolean validateToken(String token) {
-//         try {
-//             getClaimsFromToken(token);
-//             return true;
-//         } catch (JwtException | IllegalArgumentException e) {
-//             return false;
-//         }
-//     }
-
-//     public Claims getClaimsFromToken(String token) {
-//         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-//     }
-// }
 package com.example.demo.security;
 
 import io.jsonwebtoken.*;
@@ -61,7 +15,6 @@ public class JwtTokenProvider {
     private final long validityInMs;
     private final boolean enabled;
 
-    // ***** TESTS REQUIRE THIS CONSTRUCTOR *****
     public JwtTokenProvider(String secretKey, long validityInMs, boolean enabled) {
         this.key = Keys.hmacShaKeyFor(secretKey.getBytes());
         this.validityInMs = validityInMs;
@@ -74,11 +27,7 @@ public class JwtTokenProvider {
         this.enabled = true;
     }
 
-    // ******** GENERATE TOKEN ********
-    public String generateToken(Authentication authentication,
-                                Long userId,
-                                String role) {
-
+    public String generateToken(Authentication authentication,Long userId, String role) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + validityInMs);
 
@@ -93,12 +42,10 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // ******** USERNAME ********
     public String getUsernameFromToken(String token) {
         return parseClaims(token).getSubject();
     }
 
-    // ******** VALIDATION ********
     public boolean validateToken(String token) {
         try {
             parseClaims(token);
@@ -108,7 +55,6 @@ public class JwtTokenProvider {
         }
     }
 
-    // ******** RETURN ALL CLAIMS AS MAP ********
     public Map<String, Object> getAllClaims(String token) {
         Claims claims = parseClaims(token);
         Map<String, Object> map = new HashMap<>();
