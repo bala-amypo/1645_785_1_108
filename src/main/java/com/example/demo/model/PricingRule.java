@@ -38,10 +38,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "pricing_rules")
 @Getter
 @Setter
+@Entity
 public class PricingRule {
 
     @Id
@@ -50,12 +49,11 @@ public class PricingRule {
 
     private String ruleCode;
     private String description;
-    private Boolean active;
 
+    private Integer daysBeforeEvent;
     private Integer minRemainingSeats;
     private Integer maxRemainingSeats;
 
-    private Integer daysBeforeEvent;
-
     private Double priceMultiplier;
+    private Boolean active;
 }

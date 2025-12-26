@@ -40,11 +40,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/seat-inventory")
-public class SeatInventoryRecordController {
+public class SeatInventoryController {
 
     private final SeatInventoryService seatInventoryService;
 
-    public SeatInventoryRecordController(SeatInventoryService seatInventoryService) {
+    public SeatInventoryController(SeatInventoryService seatInventoryService) {
         this.seatInventoryService = seatInventoryService;
     }
 
