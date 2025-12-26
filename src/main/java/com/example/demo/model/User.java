@@ -13,18 +13,11 @@ import jakarta.validation.constraints.Email;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String fullName;
-
-    @Column(unique = true)
-    @Email
     private String email;
-    @Size(min=8)
     private String password;
-    @NotBlank
     private String role;
 }
