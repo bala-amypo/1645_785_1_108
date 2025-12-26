@@ -1,36 +1,30 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
 import com.example.demo.model.PricingRule;
 import com.example.demo.service.PricingRuleService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/pricing-rules")
+@RequiredArgsConstructor
 public class PricingRuleController {
 
-    private PricingRuleService service;
+    private final PricingRuleService service;
 
-    public PricingRuleController(PricingRuleService service) {
-        this.service = service;
-    }
-
-    @PostMapping("/pricing-rules/")
+    @PostMapping
     public PricingRule createRule(@RequestBody PricingRule rule) {
         return service.createRule(rule);
     }
 
-    @PutMapping("/pricing-rules/{id}")
-    public PricingRule updateRule(@PathVariable Long id,@RequestBody PricingRule rule) {
-        return service.updateRule(id, rule);
-    }
-
-    @GetMapping("/pricing-rules/active")
+    @GetMapping("/active")
     public List<PricingRule> getActiveRules() {
         return service.getActiveRules();
     }
 
-    @GetMapping("/pricing-rules/")
+    @GetMapping
     public List<PricingRule> getAllRules() {
         return service.getAllRules();
     }
