@@ -1,36 +1,34 @@
-
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.time.LocalDateTime;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-import com.example.demo.model.EventRecord;
 
 @Entity
+@Table(name = "price_adjustment_logs")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PriceAdjustmentLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  
+    private Long id;
+
+    // Logical link to EventRecord
+    @Column(nullable = false)
+    private Long eventId;
+
     private Double oldPrice;
     private Double newPrice;
+
     private String reason;
+
     private LocalDateTime changedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id")
-    private EventRecord event;
-
     @PrePersist
-    protected void onCreate() {
+    public void prePersist() {
         this.changedAt = LocalDateTime.now();
     }
 }
