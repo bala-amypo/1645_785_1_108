@@ -1,38 +1,45 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
 import com.example.demo.model.EventRecord;
 import com.example.demo.service.EventRecordService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/events")
 public class EventRecordController {
-    private EventRecordService service;
+
+    private final EventRecordService service;
+
     public EventRecordController(EventRecordService service) {
         this.service = service;
     }
-    @PostMapping("/events/")
+
+    @PostMapping
     public EventRecord createEvent(@RequestBody EventRecord event) {
         return service.createEvent(event);
     }
 
-    @GetMapping("/events/{id}")
+    @GetMapping("/{id}")
     public EventRecord getEventById(@PathVariable Long id) {
         return service.getEventById(id);
     }
 
-    @GetMapping("/events/lookup/{eventCode}")
+    @GetMapping("/lookup/{eventCode}")
     public EventRecord getEventByCode(@PathVariable String eventCode) {
-        return service.getEventByCode(eventCode);
+        return service.getEventByCode(eventCode).orElseThrow();
     }
 
-    @GetMapping("/events/")
+    @GetMapping
     public List<EventRecord> getAllEvents() {
         return service.getAllEvents();
     }
 
-    @PutMapping("/events/{id}/status")
-    public EventRecord updateEventStatus(@PathVariable Long id, @RequestParam boolean active) {
+    @PutMapping("/{id}/status")
+    public EventRecord updateEventStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
         return service.updateEventStatus(id, active);
     }
 }
