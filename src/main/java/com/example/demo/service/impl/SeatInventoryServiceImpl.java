@@ -161,19 +161,15 @@ public class SeatInventoryServiceImpl implements SeatInventoryService {
         if (inv.getTotalSeats() == null || inv.getTotalSeats() <= 0)
             throw new BadRequestException("Total seats must be > 0");
 
-        if (inv.getRemainingSeats() == null
-                || inv.getRemainingSeats() < 0
-                || inv.getRemainingSeats() > inv.getTotalSeats())
+        if (inv.getRemainingSeats() == null || inv.getRemainingSeats() < 0 || inv.getRemainingSeats() > inv.getTotalSeats())
             throw new BadRequestException("Remaining seats cannot exceed total seats");
 
         return repo.save(inv);
     }
 
-    // ******** THIS IS WHAT TEST EXPECTS ********
     @Override
     public SeatInventoryRecord getInventoryByEvent(long eventId) {
-        return repo.findByEventId(eventId)
-                .orElseThrow(() -> new BadRequestException("Seat inventory not found"));
+        return repo.findByEventId(eventId).orElseThrow(() -> new BadRequestException("Seat inventory not found"));
     }
 
     @Override
