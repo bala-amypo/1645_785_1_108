@@ -1,46 +1,73 @@
 package com.example.demo.security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.Authentication;
+
+import java.security.Key;
 import java.util.Date;
+import java.util.Map;
+import java.util.HashMap;
 
 public class JwtTokenProvider {
 
-    private final String secret;
+    private final Key key;
     private final long validityInMs;
     private final boolean someFlag;
 
+    // 🔥 REQUIRED constructor (used directly in tests)
     public JwtTokenProvider(String secret, long validityInMs, boolean someFlag) {
-        this.secret = secret;
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.validityInMs = validityInMs;
         this.someFlag = someFlag;
     }
 
-    public String generateToken(Long userId, String email, String role) {
-        Claims claims = Jwts.claims().setSubject(email);
-        claims.put("userId", userId);
-        claims.put("role", role);
+    // 🔥 USED IN TESTS
+    public String generateToken(Authentication authentication, Long userId, String role) {
 
+        String email = authentication.getName();
         Date now = new Date();
         Date expiry = new Date(now.getTime() + validityInMs);
 
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", userId);
+        claims.put("role", role);
+        claims.put("email", email);
+
         return Jwts.builder()
                 .setClaims(claims)
+                .setSubject(email)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
-                .signWith(SignatureAlgorithm.HS256, secret)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 
+    // 🔥 USED IN TESTS
     public boolean validateToken(String token) {
         try {
-            getClaimsFromToken(token);
+            Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token);
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
+        } catch (JwtException | IllegalArgumentException ex) {
             return false;
         }
     }
 
-    public Claims getClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    // 🔥 USED IN TESTS
+    public String getUsernameFromToken(String token) {
+        return getAllClaims(token).getSubject();
+    }
+
+    // 🔥 USED IN TESTS
+    public Map<String, Object> getAllClaims(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return new HashMap<>(claims);
     }
 }
