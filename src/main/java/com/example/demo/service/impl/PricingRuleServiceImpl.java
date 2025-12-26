@@ -36,21 +36,21 @@ public class PricingRuleServiceImpl implements PricingRuleService {
         rule.setMinRemainingSeats(updatedRule.getMinRemainingSeats());
         rule.setMaxRemainingSeats(updatedRule.getMaxRemainingSeats());
         rule.setPriceMultiplier(updatedRule.getPriceMultiplier());
-  return ruleRepository.save(rule);
- }
+        return ruleRepository.save(rule);
+    }
 
- @Override
- public List<PricingRule> getActiveRules() {
-  return ruleRepository.findByActiveTrue();
- }
+    @Override
+    public List<PricingRule> getActiveRules() {
+        return ruleRepository.findByActiveTrue();
+    }
 
- @Override
- public Optional<PricingRule> getRuleByCode(String ruleCode) {
-  return ruleRepository.findByRuleCode(ruleCode);
- }
+    @Override
+    public Optional<PricingRule> getRuleByCode(String ruleCode) {
+       return ruleRepository.findByRuleCode(ruleCode);
+    }
 
- @Override
- public List<PricingRule> getAllRules() {
-  return ruleRepository.findAll();
- }
+    @Override
+    public List<PricingRule> getAllRules() {
+       return ruleRepository.findAll();
+    }
 }
