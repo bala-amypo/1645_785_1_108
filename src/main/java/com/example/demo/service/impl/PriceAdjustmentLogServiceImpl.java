@@ -1,7 +1,43 @@
 
+// package com.example.demo.service.impl;
+
+// import com.example.demo.exception.BadRequestException;
+// import com.example.demo.model.PriceAdjustmentLog;
+// import com.example.demo.repository.PriceAdjustmentLogRepository;
+// import com.example.demo.service.PriceAdjustmentLogService;
+// import org.springframework.stereotype.Service;
+
+// import java.util.List;
+
+// @Service
+// public class PriceAdjustmentLogServiceImpl implements PriceAdjustmentLogService {
+
+//     private PriceAdjustmentLogRepository logRepository;
+
+//     public PriceAdjustmentLogServiceImpl(PriceAdjustmentLogRepository logRepository) {
+//         this.logRepository = logRepository;
+//     }
+
+//     @Override
+//     public PriceAdjustmentLog logAdjustment(PriceAdjustmentLog log) {
+//     if (log == null) throw new BadRequestException("ID cannot be null");
+//         return logRepository.save(log);
+//     }
+
+//     @Override
+//     public List<PriceAdjustmentLog> getAdjustmentsByEvent(Long eventId) {
+//         return logRepository.findByEventId(eventId);
+//     }
+
+//     @Override
+//     public List<PriceAdjustmentLog> getAllAdjustments() {
+//         return logRepository.findAll();
+//     }
+// }
+
+
 package com.example.demo.service.impl;
 
-import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.PriceAdjustmentLog;
 import com.example.demo.repository.PriceAdjustmentLogRepository;
 import com.example.demo.service.PriceAdjustmentLogService;
@@ -12,25 +48,34 @@ import java.util.List;
 @Service
 public class PriceAdjustmentLogServiceImpl implements PriceAdjustmentLogService {
 
-    private PriceAdjustmentLogRepository logRepository;
+    private final PriceAdjustmentLogRepository logRepository;
 
     public PriceAdjustmentLogServiceImpl(PriceAdjustmentLogRepository logRepository) {
         this.logRepository = logRepository;
     }
 
     @Override
-    public PriceAdjustmentLog logAdjustment(PriceAdjustmentLog log) {
-    if (log == null) throw new BadRequestException("ID cannot be null");
-        return logRepository.save(log);
-    }
-
-    @Override
-    public List<PriceAdjustmentLog> getAdjustmentsByEvent(Long eventId) {
+    public List<PriceAdjustmentLog> getLogsByEventId(Long eventId) {
         return logRepository.findByEventId(eventId);
     }
 
     @Override
     public List<PriceAdjustmentLog> getAllAdjustments() {
         return logRepository.findAll();
+    }
+
+    @Override
+    public PriceAdjustmentLog saveLog(PriceAdjustmentLog log) {
+        return logRepository.save(log);
+    }
+
+    @Override
+    public PriceAdjustmentLog logAdjustment(PriceAdjustmentLog log) {
+        return logRepository.save(log);
+    }
+
+    @Override
+    public List<PriceAdjustmentLog> getAdjustmentsByEvent(Long eventId) {
+        return logRepository.findByEventId(eventId);
     }
 }
