@@ -175,7 +175,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "event_records")
@@ -188,8 +187,6 @@ public class EventRecord {
     private String eventCode;
     private String eventName;
     private String venue;
-    @Column(name = "event_date")
-    private LocalDate eventDate;
 
     private Double basePrice;
 
