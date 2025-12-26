@@ -1,54 +1,49 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-import com.example.demo.exception.BadRequestException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository repository;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Override
+    public User createUser(User user) {
+
+        if (repository.existsByUsername(user.getUsername())) {
+            throw new BadRequestException("Username already exists");
+        }
+
+        if (user.getActive() == null) {
+            user.setActive(true);
+        }
+
+        return repository.save(user);
     }
 
     @Override
-    public User save(User user) {
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new BadRequestException("Email already exists");
-        }
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new BadRequestException("Email Id not found");
-        }
-        return user;
+    public Optional<User> getUserByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
 
     @Override
-    public User getUserById(Long id) {
-        if (id == null) throw new BadRequestException("ID cannot be null");
-        return userRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException("User not found"));
+    public User updateUserStatus(Long id, boolean active) {
+        User user = repository.findById(id).orElseThrow();
+        user.setActive(active);
+        return repository.save(user);
     }
-    // @Override
-    // public boolean existsByEmail(String email){
-    //     if(email==null) throw new BadRequestException("Email cannot be null");
-    //     return userRepository.existByEmail(email);
-    // }
 }
-
