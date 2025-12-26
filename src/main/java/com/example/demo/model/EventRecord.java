@@ -188,9 +188,7 @@ public class EventRecord {
     private String eventCode;
     private String eventName;
     private String venue;
-    @Column(name = "event_date")
     private LocalDate eventDate;
-
     private Double basePrice;
 
     private Boolean active;
