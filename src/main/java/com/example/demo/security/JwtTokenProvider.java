@@ -1,6 +1,9 @@
 package com.example.demo.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -8,8 +11,8 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private final String secret = "secretKey"; // replace with your secret
-    private final long validityInMilliseconds = 3600000; // 1h
+    private final String secret = "secretKey"; 
+    private final long validityInMilliseconds = 3600000; // 1 hour
 
     public String createToken(String email, String role) {
         Claims claims = Jwts.claims().setSubject(email);
@@ -27,8 +30,15 @@ public class JwtTokenProvider {
     }
 
     public String getEmail(String token) {
-        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
         return claims.getSubject();
+    }
+
+    public String getUsernameFromToken(String token) {
+        return getEmail(token); // alias method
     }
 
     public boolean validateToken(String token) {
@@ -39,4 +49,5 @@ public class JwtTokenProvider {
             return false;
         }
     }
-}
+
+} 
