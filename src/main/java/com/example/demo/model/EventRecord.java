@@ -189,7 +189,7 @@ public class EventRecord {
     private String eventCode;
     private String eventName;
     private String venue;
-    @Column(name = "event_date")
+    @Column(name = "event_date_time")
     private LocalDate eventDate;
 
 
