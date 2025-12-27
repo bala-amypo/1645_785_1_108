@@ -187,6 +187,7 @@ public class EventRecord {
     private Long id;
 
     private String eventCode;
+    @Column(name= "name")
     private String eventName;
     private String venue;
     @Column(name = "event_date_time")
