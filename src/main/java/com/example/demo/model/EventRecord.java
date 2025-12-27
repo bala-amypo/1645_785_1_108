@@ -185,17 +185,16 @@ public class EventRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name="event_code")
     private String eventCode;
     @Column(name= "name")
     private String eventName;
     private String venue;
     @Column(name = "event_date_time")
     private LocalDate eventDate;
-
-
+    @Column(name= "base_price")
     private Double basePrice;
-
+    @Column(name= "active")
     private Boolean active;
 
     @PrePersist
