@@ -175,51 +175,54 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import lombok.*;
 
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "event_records")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class EventRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="event_code")
+
+    @Column(name = "event_code", unique = true, nullable = false)
     private String eventCode;
-    @Column(name= "name")
+
+    @Column(name = "name", nullable = false)
     private String eventName;
+
+    @Column(nullable = false)
     private String venue;
-    @Column(name = "event_date_time")
+
+    @Column(name = "event_date_time", nullable = false)
     private LocalDate eventDate;
-    @Column(name= "base_price")
+
+    @Column(name = "base_price", nullable = false)
     private Double basePrice;
-    @Column(name= "active")
+
+    @Column(nullable = false)
     private Boolean active;
+
+    @Column(name = "total_seats", nullable = false)
+    private Integer totalSeats;
+
+    @Column(name = "available_seats", nullable = false)
+    private Integer availableSeats;
 
     @PrePersist
     public void prePersist() {
-        if (active == null) active = true;
+        if (active == null) {
+            active = true;
+        }
+        if (availableSeats == null && totalSeats != null) {
+            availableSeats = totalSeats;
+        }
     }
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getEventCode() { return eventCode; }
-    public void setEventCode(String eventCode) { this.eventCode = eventCode; }
-
-    public String getEventName() { return eventName; }
-    public void setEventName(String eventName) { this.eventName = eventName; }
-
-    public String getVenue() { return venue; }
-    public void setVenue(String venue) { this.venue = venue; }
-
-    public LocalDate getEventDate() { return eventDate; }
-    public void setEventDate(LocalDate eventDate) { this.eventDate = eventDate; }
-
-    public Double getBasePrice() { return basePrice; }
-    public void setBasePrice(Double basePrice) { this.basePrice = basePrice; }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
 }
