@@ -190,7 +190,7 @@ public class EventRecord {
     private String eventName;
     private String venue;
     @Column(name = "event_date")
-    private LocalDate eventDate;DESC event_records;
+    private LocalDate eventDate;
 
 
     private Double basePrice;
