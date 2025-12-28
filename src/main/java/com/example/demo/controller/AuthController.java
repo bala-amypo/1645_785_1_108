@@ -92,7 +92,7 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
