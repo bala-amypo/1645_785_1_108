@@ -89,11 +89,19 @@ public class DynamicPriceRecord {
         computedAt = LocalDateTime.now();
     }
 
-    public Long getEventId() { return eventId; }
-    public void setEventId(Long eventId) { this.eventId = eventId; }
+    public Long getEventId() { 
+        return eventId; 
+    }
+    public void setEventId(Long eventId){
+        this.eventId = eventId; 
+    }
 
-    public Double getComputedPrice() { return computedPrice; }
-    public void setComputedPrice(Double computedPrice) { this.computedPrice = computedPrice; }
+    public Double getComputedPrice() { 
+        return computedPrice; 
+    }
+    public void setComputedPrice(Double computedPrice) { 
+        this.computedPrice = computedPrice; 
+    }
 
     public String getAppliedRuleCodes() { return appliedRuleCodes; }
     public void setAppliedRuleCodes(String appliedRuleCodes) { this.appliedRuleCodes = appliedRuleCodes; }
