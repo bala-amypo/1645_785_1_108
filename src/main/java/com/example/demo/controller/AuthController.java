@@ -92,6 +92,11 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
+    @PostMapping("/user")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.ok(savedUser);
+    }
     @GetMapping("/user/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
 
