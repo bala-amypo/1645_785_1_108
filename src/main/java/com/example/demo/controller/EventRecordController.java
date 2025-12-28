@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.EventRecord;
 import com.example.demo.service.EventRecordService;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import java.util.List;
 
