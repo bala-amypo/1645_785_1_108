@@ -97,23 +97,23 @@ public class AuthController {
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
     }
-    @GetMapping("/user/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+    // @GetMapping("/user/{email}")
+    // public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
 
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    //     User user = userRepository.findByEmail(email)
+    //             .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return ResponseEntity.ok(user);
-    }
+    //     return ResponseEntity.ok(user);
+    // }
 
-    @GetMapping("/current")
-    public ResponseEntity<String> getCurrentUser() {
+    // @GetMapping("/current")
+    // public ResponseEntity<String> getCurrentUser() {
 
-        Authentication authentication =
-                SecurityContextHolder.getContext().getAuthentication();
+    //     Authentication authentication =
+    //             SecurityContextHolder.getContext().getAuthentication();
 
-        String username = authentication.getName();
+    //     String username = authentication.getName();
 
-        return ResponseEntity.ok(username);
-    }
+    //     return ResponseEntity.ok(username);
+    // }
 }
