@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
+@SecurityRequirement(name = "bearerAuth")
 public class EventRecordController {
 
  private final EventRecordService eventService;

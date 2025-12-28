@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/seat-inventory")
+@SecurityRequirement(name = "bearerAuth")
 public class SeatInventoryController {
 
     private final SeatInventoryService seatInventoryService;

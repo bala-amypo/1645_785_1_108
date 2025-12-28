@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pricing-rules")
+@SecurityRequirement(name = "bearerAuth")
 public class PricingRuleController {
 
  private final PricingRuleService service;

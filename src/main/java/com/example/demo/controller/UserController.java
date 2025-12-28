@@ -45,6 +45,7 @@ import com.example.demo.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
     private final UserService service;

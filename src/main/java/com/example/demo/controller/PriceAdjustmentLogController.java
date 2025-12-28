@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/price-adjustments")
+@SecurityRequirement(name = "bearerAuth")
 public class PriceAdjustmentLogController {
 
  private final PriceAdjustmentLogService service;
