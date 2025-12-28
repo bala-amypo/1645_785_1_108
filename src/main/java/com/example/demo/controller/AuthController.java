@@ -95,7 +95,6 @@ public class AuthController {
     @GetMapping("/user/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
 
-        // ✅ FIX 1: Optional<User> → User
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -105,7 +104,6 @@ public class AuthController {
     @GetMapping("/current")
     public ResponseEntity<String> getCurrentUser() {
 
-        // ✅ FIX 2: Authentication must come from SecurityContext
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
