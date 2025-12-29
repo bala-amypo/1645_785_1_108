@@ -1,55 +1,82 @@
+// // package com.example.demo.security;
+
+// // import org.springframework.security.core.userdetails.User;
+// // import org.springframework.security.core.userdetails.UserDetails;
+// // import org.springframework.security.core.userdetails.UserDetailsService;
+// // import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+// // import java.util.*;
+
+// // public class CustomUserDetailsService implements UserDetailsService {
+
+// //     private final Map<String, String> users = new HashMap<>();
+// //     private final Map<String, String> roles = new HashMap<>();
+
+// //     public CustomUserDetailsService() {
+// //     }
+
+// //     public Map<String, Object> registerUser(String name,String email,String password,String role) {
+// //         Map<String, Object> map = new HashMap<>();
+// //         long id = new Random().nextLong(1000, 9999);
+
+// //         map.put("userId", id);
+// //         map.put("name", name);
+// //         map.put("email", email);
+// //         map.put("password", password);
+// //         map.put("role", role);
+
+// //         users.put(email, password);
+// //         roles.put(email, role);
+
+// //         return map;
+// //     }
+
+// //     @Override
+// //     public UserDetails loadUserByUsername(String username)
+// //             throws UsernameNotFoundException {
+
+// //         if (!users.containsKey(username)) {
+// //             throw new UsernameNotFoundException("User not found");
+// //         }
+
+// //         return User
+// //                 .withUsername(username)
+// //                 .password(users.get(username))
+// //                 .roles(roles.get(username))
+// //                 .build();
+// //     }
+// // }
 // package com.example.demo.security;
 
-// import org.springframework.security.core.userdetails.User;
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.core.userdetails.UserDetailsService;
-// import org.springframework.security.core.userdetails.UsernameNotFoundException;
+// import com.example.demo.entity.UserAccount;
+// import com.example.demo.repository.UserAccountRepository;
+// import lombok.RequiredArgsConstructor;
+// import org.springframework.security.core.userdetails.*;
+// import org.springframework.stereotype.Service;
 
-// import java.util.*;
-
+// @Service
+// @RequiredArgsConstructor
 // public class CustomUserDetailsService implements UserDetailsService {
 
-//     private final Map<String, String> users = new HashMap<>();
-//     private final Map<String, String> roles = new HashMap<>();
-
-//     public CustomUserDetailsService() {
-//     }
-
-//     public Map<String, Object> registerUser(String name,String email,String password,String role) {
-//         Map<String, Object> map = new HashMap<>();
-//         long id = new Random().nextLong(1000, 9999);
-
-//         map.put("userId", id);
-//         map.put("name", name);
-//         map.put("email", email);
-//         map.put("password", password);
-//         map.put("role", role);
-
-//         users.put(email, password);
-//         roles.put(email, role);
-
-//         return map;
-//     }
+//     private final UserAccountRepository repo;
 
 //     @Override
-//     public UserDetails loadUserByUsername(String username)
-//             throws UsernameNotFoundException {
+//     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-//         if (!users.containsKey(username)) {
-//             throw new UsernameNotFoundException("User not found");
-//         }
+//         UserAccount user = repo.findByEmail(email)
+//                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
 
-//         return User
-//                 .withUsername(username)
-//                 .password(users.get(username))
-//                 .roles(roles.get(username))
+//         return org.springframework.security.core.userdetails.User
+//                 .withUsername(user.getEmail())
+//                 .password(user.getPassword())
+//                 .roles(user.getRole())
 //                 .build();
 //     }
 // }
 package com.example.demo.security;
 
-import com.example.demo.entity.UserAccount;
-import com.example.demo.repository.UserAccountRepository;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
@@ -58,13 +85,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserAccountRepository repo;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        UserAccount user = repo.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
