@@ -3,7 +3,6 @@ package com.example.demo.security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
-
 import javax.crypto.SecretKey;
 import java.util.Date;
 
@@ -32,9 +31,9 @@ public class JwtUtil {
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey())
-                    .build()
-                    .parseClaimsJws(token);
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;
@@ -49,15 +48,7 @@ public class JwtUtil {
                 .getBody();
     }
 
-    public String getEmail(String token) {
-        return getClaims(token).get("email", String.class);
-    }
-
-    public String getRole(String token) {
-        return getClaims(token).get("role", String.class);
-    }
-
-    public Long getUserId(String token) {
-        return getClaims(token).get("uid", Long.class);
-    }
+    public String getEmail(String token) { return getClaims(token).get("email", String.class); }
+    public String getRole(String token) { return getClaims(token).get("role", String.class); }
+    public Long getUserId(String token) { return getClaims(token).get("uid", Long.class); }
 }
