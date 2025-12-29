@@ -88,141 +88,32 @@
     // }
 
 
-// package com.example.demo.controller;
-
-// import java.util.Optional;
-
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.security.core.Authentication;
-// import org.springframework.security.core.context.SecurityContextHolder;
-// import org.springframework.web.bind.annotation.*;
-
-// import com.example.demo.model.User;
-// import com.example.demo.repository.UserRepository;
-
-// @RestController
-// @RequestMapping("/auth")
-// public class AuthController {
-
-//     private final UserRepository userRepository;
-
-//     public AuthController(UserRepository userRepository) {
-//         this.userRepository = userRepository;
-//     }
-
-//     @PostMapping("/user/register")
-//     public ResponseEntity<User> createUser(@RequestBody User user) {
-//         User savedUser = userRepository.save(user);
-//         return ResponseEntity.ok(savedUser);
-//     }
-
-// }
-// package com.example.demo.controller;
-
-// import com.example.demo.model.User;
-// import com.example.demo.repository.UserRepository;
-// import com.example.demo.security.JwtTokenProvider;
-// import org.springframework.http.ResponseEntity;
-// import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-// import org.springframework.security.crypto.password.PasswordEncoder;
-// import org.springframework.web.bind.annotation.*;
-
-// import java.util.Optional;
-
-// @RestController
-// @RequestMapping("/auth")
-// public class AuthController {
-
-//     private final UserRepository userRepository;
-//     private final PasswordEncoder passwordEncoder;
-//     private final JwtTokenProvider jwtTokenProvider;
-
-//     public AuthController(UserRepository userRepository,
-//                           PasswordEncoder passwordEncoder,
-//                           JwtTokenProvider jwtTokenProvider) {
-//         this.userRepository = userRepository;
-//         this.passwordEncoder = passwordEncoder;
-//         this.jwtTokenProvider = jwtTokenProvider;
-//     }
-
-//     @PostMapping("/user/register")
-//     public ResponseEntity<User> register(@RequestBody User user) {
-//         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//         return ResponseEntity.ok(userRepository.save(user));
-//     }
-
-//     @PostMapping("/login")
-//     public ResponseEntity<?> login(@RequestBody User request) {
-
-//         Optional<User> optional = userRepository.findByEmail(request.getEmail());
-//         if (optional.isEmpty()) return ResponseEntity.status(401).body("Invalid credentials");
-
-//         User user = optional.get();
-//         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-//             return ResponseEntity.status(401).body("Invalid credentials");
-//         }
-
-//         var auth = new UsernamePasswordAuthenticationToken(user.getEmail(), request.getPassword());
-
-//         String token = jwtTokenProvider.generateToken(auth, user.getId(), user.getRole());
-//         return ResponseEntity.ok(token);
-//     }
-// }
 package com.example.demo.controller;
+
+import java.util.Optional;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.security.JwtTokenProvider;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider;
 
-    public AuthController(UserRepository userRepository,
-                          PasswordEncoder passwordEncoder,
-                          AuthenticationManager authenticationManager,
-                          JwtTokenProvider jwtTokenProvider) {
+    public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return ResponseEntity.ok(userRepository.save(user));
+    @PostMapping("/user/register")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.ok(savedUser);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User request) {
-
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(), request.getPassword()
-                )
-        );
-
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        String token = jwtTokenProvider.generateToken(
-                user.getEmail(),
-                user.getId(),
-                user.getRole()
-        );
-
-        return ResponseEntity.ok(token);
-    }
 }
