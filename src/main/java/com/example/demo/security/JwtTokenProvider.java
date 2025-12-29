@@ -106,3 +106,39 @@
 //         }
 //     }
 // }
+package com.example.demo.security;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
+
+import java.security.Key;
+
+@Component
+public class JwtTokenProvider {
+
+    private final String jwtSecret = "mySecretKeymySecretKeymySecretKeymySecretKey"; // min 32 chars
+    private final Key key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+
+    public Claims getClaimsFromToken(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public String getUsernameFromToken(String token) {
+        return getClaimsFromToken(token).getSubject();
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            getClaimsFromToken(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
