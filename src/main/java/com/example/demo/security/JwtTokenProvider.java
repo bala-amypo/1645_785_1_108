@@ -151,17 +151,28 @@ public class JwtTokenProvider {
     @Value("${jwt.expiration}")
     private long expiration;
 
-    public String generateToken(String username) {
-        Date now = new Date();
-        Date expiry = new Date(now.getTime() + expiration);
+    public String generateToken(UsernamePasswordAuthenticationToken auth, Long userId, String role) {
+    return Jwts.builder()
+            .setSubject(auth.getName())
+            .claim("userId", userId)
+            .claim("role", role)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + expiration))
+            .signWith(SignatureAlgorithm.HS256, secretKey)
+            .compact();
+}
 
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(now)
-                .setExpiration(expiry)
-                .signWith(SignatureAlgorithm.HS256, secretKey)
-                .compact();
-    }
+    // public String generateToken(String username) {
+    //     Date now = new Date();
+    //     Date expiry = new Date(now.getTime() + expiration);
+
+    //     return Jwts.builder()
+    //             .setSubject(username)
+    //             .setIssuedAt(now)
+    //             .setExpiration(expiry)
+    //             .signWith(SignatureAlgorithm.HS256, secretKey)
+    //             .compact();
+    // }
 
     public String getUsernameFromToken(String token) {
         return Jwts.parser()
